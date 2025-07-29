@@ -1,0 +1,43 @@
+body{
+    background-color:  #31232332;
+    color: #037917;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+h2{
+    font-family: 'Noto Serif Simplified Chinese', sans-serif;
+    font-size: 100px;
+    text-align: center;
+}
+p{
+    font-size: 20px;
+    margin: 20px 0;
+    text-align: right;
+}
+.jvzhongzhengwen{
+    font-size: 20px;
+    text-align: center;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+nav ul  {
+    display: flex;
+    justify-content: center;
+    background-color: burlywood;
+    padding: 10px 0;
+}
+nav ul li a {
+    color: aliceblue;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 40px;
+    display: block;
+    transition: background-color 0.3s;
+}
+nav ul li a:hover {
+    background-color: #555;
+}
