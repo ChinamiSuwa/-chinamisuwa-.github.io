@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>联系方式——チナミ的个人网站</title>
+    <title>チナミ的个人网站</title>
     <link rel="stylesheet" href="style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=WDXL+Lubrifont+SC&display=swap" rel="stylesheet">
+    <!-- 1. 引入CesiumJS的CSS文件 -->
+    <!-- 这个文件包含了所有Cesium界面（如时间轴、按钮）的样式 -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.118/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.118/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    
+    <!-- 2. 引入我们自己的CSS文件 -->
+    <!-- 我们需要一些自定义样式来让地球撑满整个屏幕 -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -20,14 +28,15 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <section class="about-me">
-            <h2>欢迎来到チナミ的个人网站</h2>
-            <p class="jvzhongzhengwen">这里是联系方式</p>
-        </section>
-    </main>
+      <div id="cesiumContainer"></div>
+
+    <!-- 5. 引入我们自己的JavaScript文件 -->
+    <!-- 所有的Cesium初始化代码都将写在这里 -->
+    <!-- 注意：这个script标签必须在cesiumContainer这个div之后 -->
+    <script src="map-script.js"></script>
     <footer>
         <p class="copyright">&copy; 2025 チナミ的个人网站. 保留所有权利。</p>
+        <script src="script.js"></script>
     </footer>
 </body>
 </html>

@@ -131,3 +131,56 @@ footer p {
     padding: 20px;
     background: rgba(0, 0, 0, 0.1); /* 新增: 给页脚一个轻微的背景以区分 */
 }
+h3{
+    font-size: 24px;
+    color: #1e2a38;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+.notouch {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    user-select: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; 
+}
+.notouch:hover {
+    border-color: #007bff;
+    background-color: #f0f8ff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.notouch.active {
+animation: shake 0.3s ease-in-out;
+
+}
+
+
+@keyframes shake {
+    0% { transform: translateX(0) scale(1); }    /* 动画开始时，是正常大小 */
+    25% { transform: translateX(-5px) scale(0.98); } /* 抖动的同时，轻微缩小 */
+    50% { transform: translateX(5px) scale(0.95); }  /* 在抖动最剧烈时，缩小到最小 */
+    75% { transform: translateX(-3px) scale(0.98); } /* 抖动的同时，轻微缩小 */
+    100% { transform: translateX(0) scale(1); }   /* 动画结束时，回到原样 */
+}
+.nottouch.active {
+    animation: shake 0.5s ease-in-out;
+    color: red; 
+    transform: scale(0.95);
+    opacity: 0.8; 
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* 隐藏滚动条，因为地球本身可以缩放 */
+}
+
+/* 设置地球容器的样式 */
+#cesiumContainer {
+    width: 100%;
+    height: 100%;
+}
