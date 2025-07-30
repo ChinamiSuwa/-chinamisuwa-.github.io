@@ -3,17 +3,32 @@
 
 /* --- 全局基础样式 (Body) --- */
 body {
-    /* 改动: 使用一个明亮、多彩的渐变背景，为毛玻璃效果提供漂亮的背景 */
-    background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
-    background-attachment: fixed; /* 让背景在滚动时固定 */
-    color: #2c3e50;           /* 改动: 使用更柔和的深蓝灰色作为主要文字颜色 */
+    color: #2c3e50;
     font-family: 'Noto Sans SC', Arial, sans-serif;
     line-height: 1.7;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh; /* 确保body至少和视口一样高 */
+    min-height: 100vh;
+    animation: pageFadeIn 0.8s cubic-bezier(.4,0,.2,1);
+}
+
+/* 首页背景 */
+.page-home {
+    background: linear-gradient(120deg, #e0f7fa 0%, #b2dfdb 100%);
+    background-attachment: fixed;
+}
+/* 联系页背景 */
+.page-contact {
+    background: linear-gradient(120deg, #69f7be 0%, #3a95f7 100%);
+    background-attachment: fixed;
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; filter: blur(8px); }
+    to { opacity: 1; filter: blur(0); }
+}
 }
 
 /* --- 主要内容容器 (Main) - 毛玻璃效果 --- */
@@ -176,7 +191,6 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* 隐藏滚动条，因为地球本身可以缩放 */
 }
 
 /* 设置地球容器的样式 */
