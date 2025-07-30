@@ -1,43 +1,133 @@
-body{
-    background-color:  #31232332;
-    color: #037917;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+/* --- Google Fonts 引入 (推荐放在CSS文件最顶部) --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+
+/* --- 全局基础样式 (Body) --- */
+body {
+    /* 改动: 使用一个明亮、多彩的渐变背景，为毛玻璃效果提供漂亮的背景 */
+    background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+    background-attachment: fixed; /* 让背景在滚动时固定 */
+    color: #2c3e50;           /* 改动: 使用更柔和的深蓝灰色作为主要文字颜色 */
+    font-family: 'Noto Sans SC', Arial, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* 确保body至少和视口一样高 */
 }
-h2{
-    font-family: 'Noto Serif Simplified Chinese', sans-serif;
-    font-size: 100px;
+
+/* --- 主要内容容器 (Main) - 毛玻璃效果 --- */
+main {
+    width: 90%;
+    max-width: 800px;
+    /* 新增: 毛玻璃效果核心 */
+    background: rgba(255, 255, 255, 0.35); /* 半透明背景 */
+    backdrop-filter: blur(15px) saturate(180%); /* 模糊效果和饱和度提升 */
+    -webkit-backdrop-filter: blur(15px) saturate(180%); /* 兼容Safari */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* 增加一个微妙的边框，让边缘更清晰 */
+    
+    padding: 20px 40px;
+    margin-top: 30px;
+    border-radius: 16px; /* 改动: 增加圆角，配合毛玻璃效果更佳 */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* 改动: 调整阴影以适应新风格 */
+}
+
+
+/* --- 标题样式 (h2) --- */
+h2 {
+    font-size: 36px;
     text-align: center;
+    color: #1e2a38; /* 改动: 使用更深的颜色以保证在毛玻璃背景上的可读性 */
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: 700;
 }
-p{
-    font-size: 20px;
-    margin: 20px 0;
-    text-align: right;
+
+/* --- 通用段落样式 (p) --- */
+p {
+    font-size: 17px;
+    margin: 15px 0;
+    text-align: left;
 }
-.jvzhongzhengwen{
-    font-size: 20px;
+
+/* --- 专门用于居中的正文样式 (.jvzhongzhengwen) --- */
+.jvzhongzhengwen {
     text-align: center;
+    color: #2c3e50; /* 改动: 调整颜色 */
+    font-size: 18px;
 }
+
+/* --- 导航栏容器 (nav) - 毛玻璃效果 --- */
+nav {
+    width: 100%;
+    position: sticky; /* 新增: 让导航栏在滚动时固定在顶部 */
+    top: 0;
+    z-index: 1000; /* 确保导航栏在最上层 */
+    
+    /* 新增: 毛玻璃效果核心 */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
 nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    text-align: center;
-}
-nav ul  {
     display: flex;
     justify-content: center;
-    background-color: burlywood;
-    padding: 10px 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+/* --- 导航链接样式 (a) --- */
 nav ul li a {
-    color: aliceblue;
+    color: #1e2a38; /* 改动: 使用深色以保证可读性 */
     text-decoration: none;
-    padding: 10px 20px;
-    font-size: 40px;
+    padding: 18px 25px; /* 改动: 调整padding */
+    font-size: 18px;
     display: block;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    position: relative;
 }
+
+/* --- 导航链接悬停效果 (hover) --- */
 nav ul li a:hover {
-    background-color: #555;
+    background-color: rgba(255, 255, 255, 0.2); /* 改动: 悬停时增加一个半透明的背景高亮 */
+    color: #000;
+}
+
+/* --- 导航链接下划线动效 (保持) --- */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 8px; /* 改动: 调整位置 */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1e2a38; /* 改动: 匹配新的文字颜色 */
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 50%; /* 改动: 调整宽度 */
+}
+
+/* --- 页脚样式 (footer) --- */
+footer {
+    width: 100%;
+    margin-top: auto; /* 新增: 将页脚推到底部 */
+}
+
+footer p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8); /* 改动: 使用半透明白色，以适应背景 */
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.1); /* 新增: 给页脚一个轻微的背景以区分 */
 }
