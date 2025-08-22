@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目 - チナミ的个人网站</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=WDXL+Lubrifont+SC&display=swap" rel="stylesheet">
+    <meta name="description" content="项目一览与搜索">
+</head>
+<body class="page-projects">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">关于我</a></li>
+                <li><a href="blog.html">博客</a></li>
+                <li><a href="projects.html">项目</a></li>
+                <li><a href="contact.html">联系我</a></li>
+                <li><a href="map.html">地图</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 烟雾层 -->
+    <div class="fog-layer" aria-hidden="true"></div>
+
+    <main>
+        <section class="projects-hero" aria-label="项目搜索">
+            <div class="search-wrap">
+                <form class="search" role="search" action="javascript:void(0);">
+                    <span class="icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21l-4.35-4.35m1.1-4.4a6.75 6.75 0 11-13.5 0 6.75 6.75 0 0113.5 0z" stroke="#1e2a38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <input id="project-search" name="q" type="search" placeholder="搜索项目…" aria-label="搜索项目">
+                </form>
+                <p class="search-hint">键入以搜索项目</p>
+            </div>
+        </section>
+        <!-- TODO: 在此处渲染项目列表 -->
+    </main>
+
+    <footer>
+        <p class="copyright">&copy; 2025 チナミ的个人网站. 保留所有权利。</p>
+    </footer>
+</body>
+</html>

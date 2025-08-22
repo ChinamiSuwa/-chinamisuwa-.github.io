@@ -29,7 +29,6 @@ body {
     from { opacity: 0; filter: blur(8px); }
     to { opacity: 1; filter: blur(0); }
 }
-}
 
 /* --- 主要内容容器 (Main) - 毛玻璃效果 --- */
 main {
@@ -197,4 +196,263 @@ html, body {
 #cesiumContainer {
     width: 100%;
     height: 100%;
+}
+
+/* --- 项目页烟雾背景与搜索框 --- */
+.page-projects {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden; /* 隐藏超出部分的烟雾 */
+    background: radial-gradient(1200px 400px at 20% 40%, rgba(255,255,255,0.45), rgba(255,255,255,0) 60%),
+                linear-gradient(120deg, #b2fefa 0%, #0ed2f7 100%);
+    background-attachment: fixed;
+}
+
+/* 烟雾层：增强版，更多层次和动态效果 */
+.fog-layer::before,
+.fog-layer::after {
+    content: '';
+    position: fixed;
+    inset: -50%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.4), rgba(255,255,255,0) 40%),
+        radial-gradient(circle at 70% 20%, rgba(255,255,255,0.35), rgba(255,255,255,0) 50%),
+        radial-gradient(circle at 40% 70%, rgba(255,255,255,0.3), rgba(255,255,255,0) 45%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.25), rgba(255,255,255,0) 35%);
+    filter: blur(40px);
+    animation: fog-move-1 18s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.fog-layer::after {
+    background: 
+        radial-gradient(circle at 60% 40%, rgba(255,255,255,0.35), rgba(255,255,255,0) 45%),
+        radial-gradient(circle at 10% 80%, rgba(255,255,255,0.3), rgba(255,255,255,0) 50%),
+        radial-gradient(circle at 90% 10%, rgba(255,255,255,0.28), rgba(255,255,255,0) 40%),
+        radial-gradient(circle at 30% 50%, rgba(255,255,255,0.22), rgba(255,255,255,0) 35%);
+    filter: blur(35px);
+    animation: fog-move-2 25s ease-in-out infinite reverse;
+    opacity: 0.9;
+}
+
+/* 增加第三层烟雾 */
+.fog-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.fog-layer:before {
+    z-index: 1;
+}
+
+.fog-layer:after {
+    z-index: 2;
+}
+
+@keyframes fog-move-1 {
+    0%, 100% { 
+        transform: translate3d(-8%, -5%, 0) scale(1) rotate(0deg); 
+        opacity: 0.6;
+    }
+    25% { 
+        transform: translate3d(5%, 3%, 0) scale(1.1) rotate(2deg); 
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translate3d(8%, -2%, 0) scale(1.05) rotate(-1deg); 
+        opacity: 0.7;
+    }
+    75% { 
+        transform: translate3d(-3%, 4%, 0) scale(1.08) rotate(1deg); 
+        opacity: 0.9;
+    }
+}
+
+@keyframes fog-move-2 {
+    0%, 100% { 
+        transform: translate3d(6%, 4%, 0) scale(1) rotate(0deg); 
+        opacity: 0.5;
+    }
+    30% { 
+        transform: translate3d(-4%, -3%, 0) scale(1.12) rotate(-2deg); 
+        opacity: 0.8;
+    }
+    60% { 
+        transform: translate3d(3%, 6%, 0) scale(1.06) rotate(1.5deg); 
+        opacity: 0.6;
+    }
+    85% { 
+        transform: translate3d(-6%, -1%, 0) scale(1.09) rotate(-1deg); 
+        opacity: 0.9;
+    }
+}
+
+/* 英雄区：控制搜索区域位置（中间偏左） */
+.projects-hero {
+    display: grid;
+    place-items: center; /* 垂直居中 */
+    min-height: calc(100vh - 120px);
+    position: relative;
+    z-index: 10; /* 确保内容在烟雾之上 */
+}
+
+.search-wrap {
+    width: min(680px, 88vw);
+    align-self: center;
+    justify-self: start; /* 偏左 */
+    margin-left: clamp(4vw, 10%, 160px); /* 根据屏幕调整偏移 */
+}
+
+/* 动效搜索框 */
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px 14px 48px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px) saturate(160%);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform .2s ease, box-shadow .3s ease, background .3s ease;
+}
+
+.search:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    background: rgba(255,255,255,0.7);
+}
+
+.search .icon {
+    position: absolute;
+    left: 16px;
+    display: grid;
+    place-items: center;
+    opacity: .75;
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.search input[type="search"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 18px;
+    color: #1e2a38;
+}
+
+.search input::placeholder {
+    color: rgba(30, 42, 56, .55);
+}
+
+.search:focus-within .icon {
+    opacity: 1;
+    transform: scale(1.06);
+}
+
+/* 右侧提示文字 */
+.search-hint {
+    margin-top: 10px;
+    color: rgba(30, 42, 56, .8);
+    font-size: 14px;
+}
+
+/* 小屏优化 */
+@media (max-width: 640px) {
+    .search-wrap { margin-left: 6vw; }
+    .search input[type="search"] { font-size: 16px; }
+}
+
+/* --- 博客页面特定样式 --- */
+.page-blog, .page-blog-post {
+    background: linear-gradient(120deg, #e9defa 0%, #fbfcdb 100%);
+    background-attachment: fixed;
+}
+
+.blog-list-container {
+    width: 100%;
+}
+
+.blog-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog-list li a {
+    display: block;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.blog-list li a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(31, 38, 135, 0.1);
+}
+
+.blog-list h3 {
+    margin: 0 0 10px 0;
+    color: #1e2a38;
+    font-size: 24px;
+}
+
+.post-meta {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.post-excerpt {
+    font-size: 16px;
+    color: #333;
+}
+
+/* --- 博客文章页特定样式 --- */
+.blog-post {
+    padding: 30px;
+}
+
+.post-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.post-header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    color: #1e2a38;
+}
+
+.post-content {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.post-content pre {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.post-content code {
+    font-family: 'Courier New', Courier, monospace;
 }
